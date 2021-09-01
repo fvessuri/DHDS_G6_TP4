@@ -6,3 +6,8 @@ joblib
 lightgbm
 wordcloud
 eli5
+praw
+re
+datetime
+twint
+nest_asyncio
