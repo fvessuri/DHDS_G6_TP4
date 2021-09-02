@@ -46,18 +46,34 @@ def text_scrapping():
         busqueda_sel = st.selectbox("Opciones de búsqueda", busqueda)
         submit_sel = st.form_submit_button(label=" Iniciar búsqueda ")
         if submit_sel:
-            st.success("Ha iniciado la búsqueda de la droga {} en {}". format(droga, busqueda_sel))
+            st.success("Ha iniciado la búsqueda de la droga '{}' en {}". format(droga, busqueda_sel))
 
     st.write("")
 
 def file_uploading():
     st.subheader("File uploading")
     st.write("")
+    with st.form("frm_file_upload"):
+        file_up = st.file_uploader("Seleccione un archivo (csv) para procesar: ", type='csv')
+        submit_fil = st.form_submit_button(label=" Iniciar proceso ")
+        if submit_fil:
+            if file_up:
+                st.success("Ha iniciado el proceso del archivo seleccionado")
+            else:
+                st.warning("Debe seleccionar un archivo antes de iniciar el proceso")
     st.write("")
 
 def sentiment_analysis():
     st.subheader("Sentiment Analysis")
     st.write("")
+    with st.form("frm_file_upload"):
+        text_val = st.text_area("Ingrese el text para analizar: ")
+        submit_txt = st.form_submit_button(label=" Iniciar análisis de sentimiento ")
+        if submit_txt:
+            if text_val:
+                st.success("Ha iniciado el análisis del texto ingresado")
+            else:
+                st.warning("Debe ingresar un texto antes de iniciar el análisis")
     st.write("")
 
 def about():
