@@ -13,7 +13,7 @@ import re
 from datetime import datetime
 import twint
 import nest_asyncio
-nest_asyncio.apply()
+# nest_asyncio.apply()
 
 def main():
     #   Con esto se configura un titulo e icono para la página web
@@ -44,9 +44,9 @@ def text_scrapping():
         droga = st.text_input("Nombre de la droga: ")
         busqueda = ["Twitter", "Reddit"]
         busqueda_sel = st.selectbox("Opciones de búsqueda", busqueda)
-        submit_sel = st.submit_btn(label=" Iniciar búsqueda ")
+        submit_sel = st.form_submit_button(label=" Iniciar búsqueda ")
         if submit_sel:
-            st.success("Ha iniciado la búsqueda de la droga {} en {}", droga, busqueda_sel)
+            st.success("Ha iniciado la búsqueda de la droga {} en {}". format(droga, busqueda_sel))
 
     st.write("")
 
