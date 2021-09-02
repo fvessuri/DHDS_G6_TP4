@@ -46,7 +46,10 @@ def text_scrapping():
         busqueda_sel = st.selectbox("Opciones de búsqueda", busqueda)
         submit_sel = st.form_submit_button(label=" Iniciar búsqueda ")
         if submit_sel:
-            st.success("Ha iniciado la búsqueda de la droga '{}' en {}". format(droga, busqueda_sel))
+            if droga:
+                st.success("Ha iniciado la búsqueda de la droga '{}' en {}". format(droga, busqueda_sel))
+            else:
+                st.warning("Debe seleccionar una droga para realizar la búsqueda")
 
     st.write("")
 
@@ -67,7 +70,7 @@ def sentiment_analysis():
     st.subheader("Sentiment Analysis")
     st.write("")
     with st.form("frm_file_upload"):
-        text_val = st.text_area("Ingrese el text para analizar: ")
+        text_val = st.text_area("Ingrese el texto para analizar: ")
         submit_txt = st.form_submit_button(label=" Iniciar análisis de sentimiento ")
         if submit_txt:
             if text_val:
