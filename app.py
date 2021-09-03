@@ -15,6 +15,12 @@ import twint
 import nest_asyncio
 # nest_asyncio.apply()
 
+import nltk
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
 from nltk import RegexpTokenizer
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
