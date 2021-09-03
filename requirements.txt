@@ -10,3 +10,5 @@ praw
 datetime
 twint
 nest_asyncio
+nltk
+sklearn
