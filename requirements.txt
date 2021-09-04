@@ -12,3 +12,7 @@ twint
 nest_asyncio
 nltk
 sklearn
+matplotlib
+collections
+shelve
+textblob
