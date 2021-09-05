@@ -27,9 +27,11 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 
-import shelve
+# import shelve
 import matplotlib.pyplot as plt
 import collections
+import bz2
+import _pickle as cPickle
 
 def main():
     # Función principal que levanta e inicializa la app
@@ -236,18 +238,27 @@ def procesar_dataframe(df):
 def predecir_reviews(reviews):
     # Función para obtener la predicción de las reviews
     # Se obtienen los modelos entrenados
-    modelos = load_model("modelo_svd_cvectorizer")
-    lgbm = modelos["lgbm"]
-    svd = modelos["svd"]
-    cvect = modelos["cvectorizer"]
+    # modelos = load_model("modelo_svd_cvectorizer")
+    # lgbm = modelos["lgbm"]
+    # svd = modelos["svd"]
+    # cvect = modelos["cvectorizer"]
+    lgbm = decompress_pickle("modelo_lgbm")
+    svd = decompress_pickle("modelo_svd")
+    cvect = decompress_pickle("modelo_cvect")
     # Se realiza la predicción de las reviews
     pred = lgbm.predict(svd.transform(cvect.transform(reviews)))
     return pred
 
-def load_model(file):
-    # Función para recargar un modelo entrenado [se usa la librería shelve]
-    m = shelve.open(file)
-    return m
+# def load_model(file):
+#     # Función para recargar un modelo entrenado [se usa la librería shelve]
+#     m = shelve.open(file)
+#     return m
+
+# Load any compressed pickle file
+def decompress_pickle(file):
+    data = bz2.BZ2File(file + ".pbz2", "rb")
+    data = cPickle.load(data)
+    return data
 
 # Se inicia la app con la función main
 if __name__ == '__main__':
